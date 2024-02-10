@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgrey"
+    tools:context=".view.indotosign.bisindo.IndoToSignBisindoOptionsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:id="@+id/container"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_main_title"
+                android:text="@string/bisindo"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textAlignment="center"
+                android:fontFamily="@font/woliu"
+                android:layout_marginTop="70dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:id="@+id/picture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="50dp"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="@id/tv_main_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints">
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:id="@+id/img_item"
+                    android:layout_gravity="center"
+                    android:src="@drawable/item"
+                    android:contentDescription="@string/app_name" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="300dp"
+                android:gravity="center_horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/picture"
+                tools:ignore="MissingConstraints">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/card_text_to_sign"
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="@color/purple"
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_to_sign"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/woliu"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        />
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/card_voice_to_sign"
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="@color/purple"
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/voice_to_sign"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/woliu"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>

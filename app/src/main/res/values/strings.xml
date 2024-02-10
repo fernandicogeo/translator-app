@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TranslatorApp</string>
+    <string name="bisindo">BISINDO</string>
+    <string name="sibi">SIBI</string>
+    <string name="indo_to_sign">Bahasa Indonesia ke Bahasa Isyarat</string>
+    <string name="sign_to_indo">Bahasa Isyarat ke Bahasa Indonesia</string>
+    <string name="sign_to_text">Sign To Text</string>
+    <string name="sign_to_voice">Sign To Voice</string>
+    <string name="text_to_sign">Text To Sign</string>
+    <string name="voice_to_sign">Voice To Sign</string>
+    <string name="play_voice">Play Voice</string>
+    <string name="placeholder">Masukkan teks</string>
+    <string name="video">Video :</string>
+    <string name="click_to_voice">Click to Voice</string>
+    <string name="button_record">Klik untuk merecord suara</string>
+    <string name="button">Button</string>
+</resources>
