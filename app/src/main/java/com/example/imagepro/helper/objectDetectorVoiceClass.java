@@ -34,23 +34,20 @@ public class objectDetectorVoiceClass {
     private final int PIXEL_SIZE=3;
     private final int IMAGE_MEAN=0;
     private final float IMAGE_STD=255.0f;
-    private final GpuDelegate gpuDelegate;
     private int height=0;
     private  int width=0;
     private int SignInputSize = 0;
 
     public objectDetectorVoiceClass(AssetManager assetManager, String modelPath, String labelPath, int inputSize, String signModelPath, int signInputSize) throws IOException{
-        INPUT_SIZE=inputSize;
+        INPUT_SIZE = inputSize;
         SignInputSize = signInputSize;
-        Interpreter.Options options=new Interpreter.Options();
-        gpuDelegate=new GpuDelegate();
-        options.addDelegate(gpuDelegate);
-        options.setNumThreads(4);
-        interpreter=new Interpreter(loadModelFile(assetManager,modelPath),options);
-        labelList=loadLabelList(assetManager,labelPath);
-        Interpreter.Options options2 = new Interpreter.Options();
-        options2.setNumThreads(2);
-        signInterpreter = new Interpreter(loadModelFile(assetManager, signModelPath), options2);
+
+        interpreter = new Interpreter(loadModelFile(assetManager, modelPath), new Interpreter.Options());
+
+        labelList = loadLabelList(assetManager, labelPath);
+
+        signInterpreter = new Interpreter(loadModelFile(assetManager, signModelPath), new Interpreter.Options());
+
 
     }
 
