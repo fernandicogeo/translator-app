@@ -41,14 +41,9 @@ public class objectDetectorClass {
     public objectDetectorClass(AssetManager assetManager, String modelPath, String labelPath, int inputSize, String signModelPath, int signInputSize) throws IOException{
         INPUT_SIZE = inputSize;
         SignInputSize = signInputSize;
-
         interpreter = new Interpreter(loadModelFile(assetManager, modelPath), new Interpreter.Options());
-
         labelList = loadLabelList(assetManager, labelPath);
-
         signInterpreter = new Interpreter(loadModelFile(assetManager, signModelPath), new Interpreter.Options());
-
-
     }
 
     private List<String> loadLabelList(AssetManager assetManager, String labelPath) throws IOException {
