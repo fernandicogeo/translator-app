@@ -16,7 +16,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.imagepro.R;
-import com.example.imagepro.helper.objectDetectorVoiceClass;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -29,14 +28,14 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class BisindoSignToVoiceActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
-    private static final String TAG = "BisindoSignToVoiceActivity";
+    private static final String TAG = "BisindoSignToVoice";
     Button btnConvert;
     String result="nothing";
     TextToSpeech textToSpeech;
     private Mat mRgba;
     private Mat mGray;
     private CameraBridgeViewBase mOpenCvCameraView;
-    private com.example.imagepro.helper.objectDetectorVoiceClass objectDetectorVoiceClass;
+    private objectDetectorBisindoVoiceClass objectDetectorBisindoVoiceClass;
     private final BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -71,10 +70,10 @@ public class BisindoSignToVoiceActivity extends Activity implements CameraBridge
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         try {
-            objectDetectorVoiceClass = new objectDetectorVoiceClass(getAssets(), "hand_model.tflite", "custom_label.txt", 300, "signtotextbisindo.tflite", 96);
-            Log.d("BisindoSignToVoiceActivity", "Model is successfully loaded");
+            objectDetectorBisindoVoiceClass = new objectDetectorBisindoVoiceClass(getAssets(), "signtotextbisindo.tflite", 96);
+            Log.d(TAG, "Model is successfully loaded");
         } catch (IOException e) {
-            Log.d("BisindoSignToVoiceActivity", "Getting some error");
+            Log.d(TAG, "Getting some error");
             e.printStackTrace();
         }
 
@@ -142,8 +141,8 @@ public class BisindoSignToVoiceActivity extends Activity implements CameraBridge
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
         Mat out = new Mat();
-        out = objectDetectorVoiceClass.recognizeImage(mRgba);
-        result = objectDetectorVoiceClass.stringImage(mRgba);
+        out = objectDetectorBisindoVoiceClass.recognizeImage(mRgba);
+        result = objectDetectorBisindoVoiceClass.stringImage(mRgba);
         return out;
     }
 }

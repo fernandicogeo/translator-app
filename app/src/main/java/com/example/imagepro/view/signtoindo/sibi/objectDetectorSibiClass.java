@@ -1,4 +1,4 @@
-package com.example.imagepro.helper;
+package com.example.imagepro.view.signtoindo.sibi;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -11,7 +11,6 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.tensorflow.lite.Interpreter;
-import org.tensorflow.lite.gpu.GpuDelegate;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -26,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class objectDetectorClass {
+public class objectDetectorSibiClass {
     private final Interpreter interpreter;
     private final Interpreter signInterpreter;
     private final List<String> labelList;
@@ -38,7 +37,7 @@ public class objectDetectorClass {
     private  int width=0;
     private int SignInputSize = 0;
 
-    public objectDetectorClass(AssetManager assetManager, String modelPath, String labelPath, int inputSize, String signModelPath, int signInputSize) throws IOException{
+    public objectDetectorSibiClass(AssetManager assetManager, String modelPath, String labelPath, int inputSize, String signModelPath, int signInputSize) throws IOException{
         INPUT_SIZE = inputSize;
         SignInputSize = signInputSize;
         interpreter = new Interpreter(loadModelFile(assetManager, modelPath), new Interpreter.Options());

@@ -13,7 +13,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.imagepro.R;
-import com.example.imagepro.helper.objectDetectorClass;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -29,7 +28,7 @@ public class SibiSignToTextActivity extends Activity implements CameraBridgeView
     private Mat mRgba;
     private Mat mGray;
     private CameraBridgeViewBase mOpenCvCameraView;
-    private com.example.imagepro.helper.objectDetectorClass objectDetectorClass;
+    private objectDetectorSibiClass objectDetectorSibiClass;
     private final BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -64,7 +63,7 @@ public class SibiSignToTextActivity extends Activity implements CameraBridgeView
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         try {
-            objectDetectorClass = new objectDetectorClass(getAssets(), "hand_model.tflite", "custom_label.txt", 300, "signtotextsibi.tflite", 96);
+            objectDetectorSibiClass = new objectDetectorSibiClass(getAssets(), "hand_model.tflite", "custom_label.txt", 300, "signtotextsibi.tflite", 96);
             Log.d("SibiSignToTextActivity", "Model is successfully loaded");
         } catch (IOException e) {
             Log.d("SibiSignToTextActivity", "Getting some error");
@@ -112,7 +111,7 @@ public class SibiSignToTextActivity extends Activity implements CameraBridgeView
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
         Mat out = new Mat();
-        out = objectDetectorClass.recognizeImage(mRgba);
+        out = objectDetectorSibiClass.recognizeImage(mRgba);
         return out;
     }
 }

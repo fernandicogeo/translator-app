@@ -13,7 +13,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.imagepro.R;
-import com.example.imagepro.helper.objectDetectorClass;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -25,11 +24,11 @@ import org.opencv.core.Mat;
 import java.io.IOException;
 
 public class BisindoSignToTextActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
-    private static final String TAG = "BisindoSignToTextActivity";
+    private static final String TAG = "BisindoSignToText";
     private Mat mRgba;
     private Mat mGray;
     private CameraBridgeViewBase mOpenCvCameraView;
-    private com.example.imagepro.helper.objectDetectorClass objectDetectorClass;
+    private objectDetectorBisindoClass objectDetectorBisindoClass;
     private final BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -64,10 +63,10 @@ public class BisindoSignToTextActivity extends Activity implements CameraBridgeV
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         try {
-            objectDetectorClass = new objectDetectorClass(getAssets(), "hand_model.tflite", "custom_label.txt", 300, "signtotextbisindo.tflite", 96);
-            Log.d("BisindoSignToTextActivity", "Model is successfully loaded");
+            objectDetectorBisindoClass = new objectDetectorBisindoClass(getAssets(), "signtotextbisindo.tflite", 96);
+            Log.d(TAG, "Model is successfully loaded");
         } catch (IOException e) {
-            Log.d("BisindoSignToTextActivity", "Getting some error");
+            Log.d(TAG, "Getting some error");
             e.printStackTrace();
         }
     }
@@ -112,7 +111,7 @@ public class BisindoSignToTextActivity extends Activity implements CameraBridgeV
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
         Mat out = new Mat();
-        out = objectDetectorClass.recognizeImage(mRgba);
+        out = objectDetectorBisindoClass.recognizeImage(mRgba);
         return out;
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TranslatorApp</string>
+    <string name="app_name">SignTalk</string>
     <string name="bisindo">BISINDO</string>
     <string name="sibi">SIBI</string>
     <string name="indo_to_sign">Bahasa Indonesia ke Bahasa Isyarat</string>

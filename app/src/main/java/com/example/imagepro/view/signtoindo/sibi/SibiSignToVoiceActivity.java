@@ -16,7 +16,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.imagepro.R;
-import com.example.imagepro.helper.objectDetectorVoiceClass;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -36,7 +35,7 @@ public class SibiSignToVoiceActivity extends Activity implements CameraBridgeVie
     private Mat mRgba;
     private Mat mGray;
     private CameraBridgeViewBase mOpenCvCameraView;
-    private com.example.imagepro.helper.objectDetectorVoiceClass objectDetectorVoiceClass;
+    private objectDetectorSibiVoiceClass objectDetectorSibiVoiceClass;
     private final BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -71,7 +70,7 @@ public class SibiSignToVoiceActivity extends Activity implements CameraBridgeVie
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         try {
-            objectDetectorVoiceClass = new objectDetectorVoiceClass(getAssets(), "hand_model.tflite", "custom_label.txt", 300, "signtotextsibi.tflite", 96);
+            objectDetectorSibiVoiceClass = new objectDetectorSibiVoiceClass(getAssets(), "hand_model.tflite", "custom_label.txt", 300, "signtotextsibi.tflite", 96);
             Log.d("SibiSignToVoiceActivity", "Model is successfully loaded");
         } catch (IOException e) {
             Log.d("SibiSignToVoiceActivity", "Getting some error");
@@ -142,8 +141,8 @@ public class SibiSignToVoiceActivity extends Activity implements CameraBridgeVie
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
         Mat out = new Mat();
-        out = objectDetectorVoiceClass.recognizeImage(mRgba);
-        result = objectDetectorVoiceClass.stringImage(mRgba);
+        out = objectDetectorSibiVoiceClass.recognizeImage(mRgba);
+        result = objectDetectorSibiVoiceClass.stringImage(mRgba);
         return out;
     }
 }
